@@ -44,13 +44,13 @@ public class FileIOManager : MonoBehaviour {
             Instance = this;
         }
 
-        //Load the user's recipe book
-        LoadUserData();
-
         //Initialize other variables
         currentUserData = new UserData();
         recipeBook = new Dictionary<string, Recipe>();
         newRecipe = new Recipe();
+
+        //Load the user's recipe book
+        LoadUserData();
     }
     #endregion
 
@@ -85,7 +85,39 @@ public class FileIOManager : MonoBehaviour {
         currentUserData.recipeBook = recipeBook;
         formatter.Serialize(fs, currentUserData);
         fs.Close();
-        Debug.Log("Save successful!");
+    }
+    #endregion
+
+    #region Editor Functions
+    /// <summary>
+    /// Used for the custom inspector button "Reset User Data" (debugging).
+    /// Clears all recipes from the recipe book.
+    /// </summary>
+    public void ResetUserData()
+    {
+        IFormatter formatter = new BinaryFormatter();
+        FileStream fs = File.Create(Application.persistentDataPath + USER_SAVE_FILE_NAME);
+        currentUserData = new UserData();
+        recipeBook = new Dictionary<string, Recipe>();
+        newRecipe = new Recipe();
+        formatter.Serialize(fs, currentUserData);
+        fs.Close();
+    }
+
+    /// <summary>
+    /// Used for custom inspector button "Print User Data" (debugging).
+    /// Prints all recipes on the save file to the console.
+    /// </summary>
+    public void PrintUserData()
+    {
+        foreach (string key in recipeBook.Keys)
+        {
+            Debug.Log("Recipe: " + key);
+            for(int i = 0; i < recipeBook[key].ingredients.Length; i++)
+            {
+                Debug.Log("Ingredient " + (i+1) + ": " + recipeBook[key].ingredients[i]);
+            }
+        }
     }
     #endregion
 }
