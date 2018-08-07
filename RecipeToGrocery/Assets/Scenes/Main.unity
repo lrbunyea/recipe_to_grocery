@@ -185,7 +185,6 @@ GameObject:
   m_Component:
   - component: {fileID: 81224725}
   - component: {fileID: 81224728}
-  - component: {fileID: 81224729}
   - component: {fileID: 81224727}
   - component: {fileID: 81224726}
   m_Layer: 5
@@ -315,18 +314,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 81224724}
---- !u!114 &81224729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 81224724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86b23a2ba89911488b089c6ea73b01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipe: {fileID: 499166611}
 --- !u!1 &92598620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientInputField: {fileID: 114632007878462980, guid: 6404b2adb8f31c546abaf19bb65010ed,
     type: 2}
+  recipeNameInputField: {fileID: 81224726}
   addIngredientButton: {fileID: 1355891776}
 --- !u!114 &1546330579
 MonoBehaviour:
