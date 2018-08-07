@@ -46,7 +46,21 @@ public class IngredientInputCanvasController : MonoBehaviour {
 
     public void SaveIngredients()
     {
-        //This will find all the ingredient fields, iterate through them, and save them to a new recipe class which will be saved in a file.
+        //variables to be passed to FileIOManager
+        string recipeName;
+        recipeName = FindObjectOfType<RecipeNameInputFieldController>().FetchRecipeName();
+        Debug.Log(recipeName);
+
+        //Rip ingredients from all input fields
+        IngredientInputFieldController[] data = FindObjectsOfType<IngredientInputFieldController>();
+        string[] ingredientData = new string[data.Length];
+        for (int i = 0; i < data.Length; i++)
+        {
+            ingredientData[i] = data[i].FetchIngredient();
+            Debug.Log(ingredientData[i]);
+        }
+
+        FileIOManager.Instance.SaveRecipe(recipeName, ingredientData);
     }
     #endregion
 

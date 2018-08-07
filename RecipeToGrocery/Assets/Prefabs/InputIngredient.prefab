@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224552200077584152}
   - component: {fileID: 222911132676606370}
+  - component: {fileID: 114750761047181496}
   - component: {fileID: 114597075130764142}
   - component: {fileID: 114632007878462980}
   m_Layer: 5
@@ -219,6 +220,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Enter ingredient...
+--- !u!114 &114750761047181496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1569087562728778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c80f6f79a7aa874ebfc816faab5885b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient: {fileID: 114192482115153890}
 --- !u!222 &222086483128769940
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -261,7 +274,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1569087562728778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -272,7 +285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 115}
+  m_AnchoredPosition: {x: -301, y: -420}
   m_SizeDelta: {x: 257.47, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224981488761972998

@@ -22,6 +22,8 @@ public struct Recipe
 
 public class FileIOManager : MonoBehaviour {
     #region Variables
+    const string USER_SAVE_FILE_NAME = "/userRecipeBook.dat";
+
     //Singleton pattern
     public static FileIOManager Instance;
 
@@ -58,12 +60,15 @@ public class FileIOManager : MonoBehaviour {
     /// </summary>
     public void LoadUserData()
     {
-        IFormatter formatter = new BinaryFormatter();
-        FileStream fs = File.Open(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
-        UserData userData = (UserData)formatter.Deserialize(fs);
-        currentUserData = userData;
-        recipeBook = currentUserData.recipeBook;
-        fs.Close();
+        if (File.Exists(Application.persistentDataPath + USER_SAVE_FILE_NAME))
+        {
+            IFormatter formatter = new BinaryFormatter();
+            FileStream fs = File.Open(Application.persistentDataPath + USER_SAVE_FILE_NAME, FileMode.Open);
+            UserData userData = (UserData)formatter.Deserialize(fs);
+            currentUserData = userData;
+            recipeBook = currentUserData.recipeBook;
+            fs.Close();
+        }
     }
 
     /// <summary>
@@ -74,12 +79,13 @@ public class FileIOManager : MonoBehaviour {
     public void SaveRecipe(string recipeName, string[] ingredients)
     {
         IFormatter formatter = new BinaryFormatter();
-        FileStream fs = File.Create(Application.persistentDataPath + "/PlayerData.dat");
+        FileStream fs = File.Create(Application.persistentDataPath + USER_SAVE_FILE_NAME);
         newRecipe.ingredients = ingredients;
         recipeBook.Add(recipeName, newRecipe);
         currentUserData.recipeBook = recipeBook;
         formatter.Serialize(fs, currentUserData);
         fs.Close();
+        Debug.Log("Save successful!");
     }
     #endregion
 }
