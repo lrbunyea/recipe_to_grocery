@@ -192,12 +192,24 @@ public class IngredientInputCanvasController : MonoBehaviour {
     private string[] FetchIngredientInput()
     {
         //Rip ingredients from all input fields, then delete the input fields themselves
-        string[] ingredientData = new string[currentNumInputFields];
+        int actualIngredients = 0; //Count of how many input fields actually contain content
+        //first chack how many ingredients are actually entered
         for (int i = 0; i < currentNumInputFields; i++)
         {
-            if (currentIngredients[i] != null)
+            if (currentIngredients[i].text != "")
             {
-                ingredientData[i] = currentIngredients[i].GetComponent<IngredientInputFieldController>().FetchIngredient();
+                actualIngredients++;
+            }
+        }
+        //Now write that data to a file
+        string[] ingredientData = new string[actualIngredients];
+        int j = 0;
+        for (int i = 0; i < currentNumInputFields && j < actualIngredients; i++)
+        {
+            if (currentIngredients[i].text != "")
+            {
+                ingredientData[j] = currentIngredients[i].GetComponent<IngredientInputFieldController>().FetchIngredient();
+                j++;
             }
         }
         return ingredientData;
